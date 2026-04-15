@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vantage | ICT171 Cloud Project Proposal</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0%, #111827 45%, #0f172a 100%);
+      color: #e5e7eb;
+      line-height: 1.7;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(17, 24, 39, 0.92));
+      border: 1px solid rgba(96, 165, 250, 0.22);
+      border-radius: 20px;
+      padding: 42px 34px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.38);
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(96, 165, 250, 0.08), transparent 45%);
+      pointer-events: none;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.16);
+      color: #bfdbfe;
+      border: 1px solid rgba(147, 197, 253, 0.28);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 3.1rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+      text-shadow: 0 4px 18px rgba(96, 165, 250, 0.12);
+    }
+
+    .subtitle {
+      font-size: 1.08rem;
+      color: #cbd5e1;
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+
+    .student-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .meta-box {
+      background: rgba(30, 41, 59, 0.74);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 14px;
+      padding: 16px;
+      backdrop-filter: blur(4px);
+    }
+
+    .meta-label {
+      font-size: 0.85rem;
+      color: #93c5fd;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-value {
+      font-size: 1rem;
+      color: #f8fafc;
+      font-weight: bold;
+    }
+
+    .section {
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      border-radius: 18px;
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+    }
+
+    h2 {
+      color: #60a5fa;
+      font-size: 1.55rem;
+      margin-bottom: 18px;
+      border-left: 5px solid #3b82f6;
+      padding-left: 14px;
+      letter-spacing: 0.01em;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: #e2e8f0;
+    }
+
+    ul {
+      margin: 12px 0 18px 24px;
+      color: #e2e8f0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .highlight {
+      color: #93c5fd;
+      font-weight: bold;
+    }
+
+    .footer {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.94rem;
+      margin-top: 28px;
+      padding-bottom: 10px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero,
+      .section {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <section class="hero">
+      <div class="tag">ICT171 Cloud Project Proposal</div>
+      <h1>Vantage</h1>
+      <p class="subtitle">
+        A cloud-based monitoring and change detection platform deployed on a Linux virtual machine and made accessible through a public IP address and domain name.
+      </p>
+
+      <div class="student-meta">
+        <div class="meta-box">
+          <div class="meta-label">Student Name</div>
+          <div class="meta-value">Sahil Bawa</div>
+        </div>
+
+        <div class="meta-box">
+          <div class="meta-label">Student Number</div>
+          <div class="meta-value">35734862</div>
+        </div>
+
+        <div class="meta-box">
+          <div class="meta-label">Cloud Provider</div>
+          <div class="meta-value">DigitalOcean</div>
+        </div>
+
+        <div class="meta-box">
+          <div class="meta-label">Server Type</div>
+          <div class="meta-value">Ubuntu Linux VPS</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Project Description</h2>
+
+      <p>
+        <span class="highlight">Vantage</span> is a cloud-based monitoring and change detection platform that will be deployed on a Linux virtual machine and made accessible through a public IP address and domain name. The purpose of the project is to build a practical system that monitors both internal server activity and selected external web content from a single hosted environment. The platform will collect and display useful system information such as CPU usage, memory usage, disk usage, service availability, and authentication log activity. These checks will be automated using scripts that run on the server at regular intervals, reducing the need for manual monitoring and demonstrating practical server administration skills. In addition to internal system monitoring, Vantage will periodically check selected public web pages and record when important content changes occur. This will allow the project to demonstrate not only Linux server deployment and web hosting, but also automation, logging, and change detection in a real cloud environment. A realistic next stage of development will be to present the collected results through a simple web dashboard, improve the structure of stored monitoring logs, and strengthen the server by configuring HTTPS and basic security hardening measures. In this way, the project provides a clear pathway from basic cloud deployment to a more advanced monitoring platform that reflects both technical development and practical cybersecurity application.
+      </p>
+
+      <p>
+        In its initial stage, the project will include a working Linux virtual machine, a configured Nginx web server, DNS linkage to a domain name, and a public webpage introducing the system. This first phase focuses on the core cloud deployment requirements of the unit, including provisioning the server, connecting remotely through SSH, installing and configuring software manually, and making the service accessible over the internet. A scripting component will then be added to automate practical monitoring tasks such as checking whether key services are running, collecting system resource usage, and reading selected authentication log activity.
+      </p>
+
+      <p>
+        As development continues, Vantage will be expanded into a more structured monitoring platform with a stronger web-based presentation of collected results. The next stage will focus on storing monitoring outputs in an organised way, presenting them through a simple dashboard, and adding external web page change detection so that selected public pages can be checked for meaningful updates over time. Further improvement will include HTTPS configuration, stronger server hardening, and cleaner reporting of monitoring events. This development path keeps the project technically focused, realistic to implement, and closely aligned with Linux administration, automation, and cybersecurity practice.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Why DigitalOcean Was Chosen</h2>
+
+      <p>
+        DigitalOcean was selected as the cloud provider because it offers a clear and practical Infrastructure as a Service environment with full SSH access, which matches the technical requirements of this project. This allows the server to be configured manually rather than relying on a pre-built managed platform, making it well suited for demonstrating Linux administration, software installation, web hosting, and cloud deployment in a hands-on way. That level of control is valuable because the aim of the project is not only to host a webpage, but also to build and manage the underlying server environment directly.
+      </p>
+
+      <p>
+        A further reason for choosing DigitalOcean is that its interface is well organised, its documentation is clear, and a virtual machine can be deployed with relatively little overhead compared with more complex cloud platforms. This makes it a suitable option for a student project, as it allows more attention to be given to the monitoring and automation features rather than to the setup process itself. In addition, DigitalOcean works well with the GitHub Student Developer Pack, which helps reduce costs and makes it realistic to continue developing the project after the initial proposal stage.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Project License</h2>
+
+      <p>
+        This project will be released under the MIT License. I chose the MIT License because it is simple, widely used, and suitable for a student software project that may continue to develop over time. It allows other people to view, use, modify, and share the code, as long as the original copyright notice and license terms stay with the project. This makes it a practical choice for work that may later be expanded and included in a public GitHub portfolio. The license will also be clearly marked on the webpage and included in the GitHub repository documentation.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Planned Development Stages</h2>
+
+<ul>
+  <li><strong>Stage 1:</strong> Deploy the Ubuntu virtual server, configure Nginx, publish the proposal webpage, connect the server through SSH, and document the setup process on GitHub.</li>
+  <li><strong>Stage 2:</strong> Add scripts to monitor key system information such as service availability, CPU usage, memory usage, disk usage, and selected authentication log activity, then organise the collected results clearly.</li>
+  <li><strong>Stage 3:</strong> Extend the platform by adding external web page change detection, a simple dashboard-style presentation of monitoring results, HTTPS configuration, and stronger server hardening measures.</li>
+</ul>
+    </section>
+
+    <p class="footer">
+      Hosted on a cloud VPS for ICT171 — Introduction to Server Environments and Architectures<br>
+      Project License: MIT License © 2026 Sahil Bawa
+    </p>
+
+  </div>
+</body>
+</html>
