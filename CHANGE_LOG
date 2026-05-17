@@ -1,0 +1,17 @@
+# Changelog
+
+## 2026-05-17 — Stage 1 backend deployed
+
+Today I deployed the first working backend for Vantage to the DigitalOcean droplet.
+
+### Completed
+- Uploaded `vantage_check.sh` and `install_vantage.sh` to the server
+- Installed the check script into `/usr/local/bin/`
+- Created `/var/lib/vantage/`
+- Created `/var/log/vantage.log`
+- Added a cron job to run the check script every 5 minutes
+- Generated `/var/www/html/status.json`
+- Updated the live `index.html` page so it reads real output from `status.json`
+
+### Result
+Vantage is now working as a real cloud-hosted monitoring and server-status project rather than just a proposal page.
