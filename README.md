@@ -1,72 +1,91 @@
 # Vantage
 
-## ICT171 Cloud Project Proposal and Development Repository
+## ICT171 Cloud Server Project
 
 **Student Name:** Sahil Bawa  
 **Student Number:** 35734862  
 **Unit:** ICT171 — Introduction to Server Environments and Architectures  
 **Cloud Provider:** DigitalOcean  
-**Server Type:** Ubuntu Linux VPS  
+**Server Type:** Ubuntu 24.04 LTS VPS  
 **Web Server:** Nginx  
 
-## Live Server
+## Live System
+
 **Public IP Address:** 134.199.167.21
 
-## Project Overview
-Vantage is a cloud-based monitoring and change detection platform deployed on a Linux virtual machine and made accessible through a public IP address and domain name. The purpose of the project is to build a practical system that monitors both internal server activity and selected external web content from a single hosted environment.
+Vantage is a cloud-hosted monitoring and server-status project built for Murdoch ICT171. It runs on a DigitalOcean Ubuntu droplet behind Nginx and uses a single Bash script, scheduled by cron, to perform recurring checks on the host and the project webpage. These checks include server self-health, HTTP uptime, a response-header security audit, and a SHA-256 content-integrity hash of the homepage. The results are written to a JSON file and displayed in a live dashboard on the website.
 
-The platform is intended to collect and display useful system information such as CPU usage, memory usage, disk usage, service availability, and authentication log activity. These checks will be automated using scripts that run on the server at regular intervals, reducing the need for manual monitoring and demonstrating practical server administration skills.
+## Architecture
 
-In addition to internal system monitoring, Vantage will periodically check selected public web pages and record when important content changes occur. This allows the project to demonstrate Linux server deployment, web hosting, automation, logging, and change detection in a real cloud environment.
+Vantage runs on a DigitalOcean Ubuntu droplet.  
+Nginx serves the public website from `/var/www/html/`.  
+A cron job runs `vantage_check.sh` every five minutes.  
+The script writes the latest results to `/var/www/html/status.json`.  
+The webpage reads `status.json` and displays the current check results in the dashboard.
 
-## Project Goals
-- Deploy and configure a Linux virtual server in the cloud
-- Host a public webpage using Nginx
-- Link the server to a domain name
-- Document the setup process clearly
-- Add scripting to automate monitoring tasks
-- Extend the project into a more structured monitoring platform over time
+## Implemented Checks
 
-## Planned Development Stages
+### CHK-01 — Uptime & Response
+Sends an HTTP request to the project webpage and records the status code and response time.
 
-### Stage 1
-- Deploy the Ubuntu virtual server
-- Configure Nginx
-- Publish the proposal webpage
-- Establish remote administration through SSH
-- Document the setup process on GitHub
+### CHK-02 — TLS Certificate Expiry
+Planned for Stage 2 after HTTPS is enabled.
 
-### Stage 2
-- Add scripts to monitor service availability
-- Record CPU, memory, and disk usage
-- Review selected authentication log activity
-- Organise the collected results clearly
+### CHK-03 — Security Headers
+Checks for common response headers:
+- HSTS
+- Content-Security-Policy
+- X-Frame-Options
+- X-Content-Type-Options
+- Referrer-Policy
 
-### Stage 3
-- Add external web page change detection
-- Build a simple dashboard-style presentation of results
-- Configure HTTPS
-- Apply stronger server hardening measures
+### CHK-04 — Content Integrity
+Calculates a SHA-256 hash of the homepage and compares it with a stored baseline.
 
-## Current Progress
-- [x] DigitalOcean account created
-- [x] Ubuntu virtual server deployed
-- [x] SSH access configured
-- [x] Nginx installed
-- [x] Proposal webpage uploaded to live server
+### CHK-07 — Server Self-Check
+Collects CPU usage, memory usage, disk usage, and uptime from the host.
+
+## Current Status
+
+- [x] DigitalOcean droplet provisioned
+- [x] Ubuntu 24.04 LTS installed
+- [x] SSH key authentication configured
+- [x] Nginx installed and serving the site
+- [x] `vantage_check.sh` deployed
+- [x] Cron job configured
+- [x] `status.json` being generated
+- [x] Live dashboard reading real output
 - [x] GitHub repository created
-- [ ] Domain name linked
-- [ ] Monitoring scripts added
-- [ ] HTTPS configured
-- [ ] Dashboard features added
+- [ ] Domain configured
+- [ ] HTTPS enabled
+- [ ] Real TLS certificate expiry check activated
 
-## Technologies Used
-- Ubuntu Linux
-- Nginx
-- HTML/CSS
-- SSH
-- DigitalOcean
-- GitHub
+## Roadmap
 
-## License
-This project is released under the MIT License.
+### Stage 1 — Cloud foundation and live checks
+- Provision Ubuntu droplet
+- Configure Nginx
+- Set up SSH key authentication
+- Publish project page on public IP
+- Deploy Bash check script through cron
+- Write results to `/var/www/html/status.json`
+
+### Stage 2 — DNS, HTTPS, and real TLS check
+- Register or use a domain
+- Point DNS to the droplet
+- Update Nginx `server_name`
+- Install Certbot and enable Let's Encrypt HTTPS
+- Activate CHK-02 with a real certificate-expiry check
+
+### Stage 3 — Documentation, verification, and small improvements
+- Finalise `README.md` and `SETUP.md`
+- Add a clear “How to verify” section
+- Tidy logging and maintenance
+- Produce the final PDF report
+
+## How to Verify
+
+Check that the site is live:
+
+```bash
+curl -I http://134.199.167.21
