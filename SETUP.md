@@ -1,48 +1,19 @@
 # Vantage Setup Notes
 
 ## Project Overview
-Vantage is a cloud-based monitoring and change detection platform developed for ICT171.  
-The project is hosted on a Linux virtual server and currently presents a public webpage through Nginx.  
-Its broader purpose is to develop a practical cloud environment that can later be extended with monitoring scripts, logging, website change detection, and security improvements.
 
----
+Vantage is a cloud-hosted monitoring and server-status project built for Murdoch ICT171. It runs on a DigitalOcean Ubuntu droplet behind Nginx and uses a single Bash script, scheduled by cron, to perform recurring checks on the host and the project webpage. These checks include server self-health, HTTP uptime, a response-header security audit, and a SHA-256 content-integrity hash of the homepage. The results are written to a JSON file and displayed in a live dashboard on the website.
 
 ## Server Information
+
 - **Cloud Provider:** DigitalOcean
-- **Server Type:** Ubuntu Linux Virtual Private Server (VPS)
+- **Operating System:** Ubuntu 24.04 LTS
 - **Web Server:** Nginx
-- **Public IP Address:** 134.199.167.21
-- **Project Name:** Vantage
+- **Public IP:** 134.199.167.21
 
----
+## Initial Access
 
-## Repository Information
-- **GitHub Repository:** `Vantage_ICT171`
-- **Main Files Included:**
-  - `index.html`
-  - `README.md`
-  - `LICENSE`
-  - `SETUP.md`
+SSH access was configured using an SSH key generated on macOS.
 
-This repository stores the project webpage, project documentation, setup notes, and licensing information.
-
----
-
-## Initial Cloud Deployment
-The first stage of the project involved creating a new Ubuntu-based Droplet on DigitalOcean.  
-DigitalOcean was selected because it provides direct SSH access, simple deployment, and a practical Infrastructure as a Service environment suitable for learning Linux administration and cloud hosting.
-
-The virtual server was configured with:
-- Ubuntu 24.04 LTS
-- Shared CPU basic plan
-- SSH key authentication
-- Public IP access
-
----
-
-## SSH Key Configuration
-Secure remote access to the server was set up using an SSH key pair generated on macOS Terminal.
-
-### SSH key generation command
 ```bash
-ssh-keygen -t ed25519 -f ~/.ssh/vantage_do_key -C "vantage-do-key"
+ssh -i ~/.ssh/vantage_do_key root@134.199.167.21
